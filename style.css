@@ -1,0 +1,11 @@
+*{
+	/* no wasted space */
+	padding:0;
+	margin:0;
+	/*border:1px solid red;/**/
+	box-sizing: border-box;
+}
+body{
+	/* no scrollbars */
+	overflow: hidden;
+}
