@@ -61,10 +61,10 @@ function addCheatedPointsInFarCorners()
 	//this is a hack that is made so i do not have to find the rare triangles that do not have adjacents triangles
 	//illusion : 10/10
 	//laziness : 10/10
-	points.push(new Point(-999999,-999999,'#555', points.length));
-	points.push(new Point(+999998,-999998,'#555', points.length));
-	points.push(new Point(-999997,+999997,'#555', points.length));
-	points.push(new Point(+999996,+999996,'#555', points.length));
+	points.push(new Point(-999999.99,-999999.96,'#555', points.length));
+	points.push(new Point(+999999.98,-999999.97,'#555', points.length));
+	points.push(new Point(-999999.97,+999999.98,'#555', points.length));
+	points.push(new Point(+999999.96,+999999.99,'#555', points.length));
 }
 
 function consoleSeparator()
@@ -77,8 +77,8 @@ console.log('TODO: panneau de controle pour choisir quoi afficher, charger depui
 console.log('TODO : gerer polygones ocmmes objets');
 console.log("START");
 const c   = document.getElementById("canvas_voronoi");
-c.width = window.innerWidth;
-c.height = window.innerHeight;
+//c.width = window.innerWidth;
+//c.height = window.innerHeight;
 const ctx = c.getContext("2d");
 
 let points = [];
@@ -269,7 +269,7 @@ triangles.forEach(t=> t.circumcircle.drawCenter('red'));
 
 
 
-
+/*
 consoleSeparator();
 console.groupCollapsed('[LIST OF POINTS]');
 points.forEach(p => p.toConsole());
@@ -287,4 +287,6 @@ console.groupCollapsed('[LIST OF PAIRS OF TRIANGLES]');
 pairs.forEach(p => console.log(p.t1, p.t2));
 console.groupEnd();
 consoleSeparator();
-console.log("END");
+console.log("END");/**/
+
+console.clear();

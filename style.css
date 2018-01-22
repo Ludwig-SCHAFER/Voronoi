@@ -1,11 +1,27 @@
 *{
 	/* no wasted space */
 	padding:0;
-	margin:0;
-	/*border:1px solid red;/**/
+	margin:5px;
+	border:1px solid #FFB000;/**/
 	box-sizing: border-box;
+	outline:0;
 }
 body{
 	/* no scrollbars */
 	overflow: hidden;
+}
+#popup{
+	position: absolute;
+	left : 900px;
+	top : 40px ;
+}
+
+#popup header h2{
+	float:left;
+}
+#popup header #control_toggle{
+	float:right;
+}
+#popup main{
+	clear:both;
 }
