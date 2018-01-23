@@ -1,8 +1,8 @@
 *{
 	/* no wasted space */
 	padding:0;
-	margin:5px;
-	border:1px solid #FFB000;/**/
+	margin:0;
+	/*border:1px solid #FFB000;/**/
 	box-sizing: border-box;
 	outline:0;
 }
@@ -12,10 +12,18 @@ body{
 }
 #popup{
 	position: absolute;
-	left : 900px;
-	top : 40px ;
+	left : 90px;
+	top : 90px ;
+	background:#ffffff80;
+	border-radius: 30px;
+	border:#FFB000 solid 4px;
 }
-
+#popup header {
+	margin:5px 5px 0 5px;
+}
+#popup footer{
+	text-align:center;
+}
 #popup header h2{
 	float:left;
 }

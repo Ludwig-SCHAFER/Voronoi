@@ -73,12 +73,15 @@ function consoleSeparator()
 }
 
 /*===========================================================================*/
-console.log('TODO: panneau de controle pour choisir quoi afficher, charger depuis localStorage, charger des sets prédéfinis, enregister, editer MAX_POINTS,');
 console.log('TODO : gerer polygones ocmmes objets');
+console.log('TODO : sauver PARAMETRES en obj - localstorage');
+console.log('TODO : ajouter un point au clic (option pour desactiver)');
+console.log('TODO : charger une image custom avec 0 points');
+console.log('TODO : image de fond à prévoir dans le script');
 console.log("START");
 const c   = document.getElementById("canvas_voronoi");
-//c.width = window.innerWidth;
-//c.height = window.innerHeight;
+c.width = window.innerWidth;
+c.height = window.innerHeight;
 const ctx = c.getContext("2d");
 
 let points = [];
@@ -269,7 +272,7 @@ triangles.forEach(t=> t.circumcircle.drawCenter('red'));
 
 
 
-/*
+
 consoleSeparator();
 console.groupCollapsed('[LIST OF POINTS]');
 points.forEach(p => p.toConsole());
@@ -289,4 +292,4 @@ console.groupEnd();
 consoleSeparator();
 console.log("END");/**/
 
-console.clear();
+//console.clear();
