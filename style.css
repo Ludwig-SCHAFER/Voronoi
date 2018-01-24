@@ -12,11 +12,12 @@ body{
 }
 #popup{
 	position: absolute;
-	left : 90px;
-	top : 90px ;
-	background:#ffffff80;
+	left : 0px;
+	top : -10px ;
+	/*background:#FFFFFFc0;*/
 	border-radius: 30px;
 	border:#FFB000 solid 4px;
+	/*filter: blur(5px);*/
 }
 #popup header {
 	margin:5px 5px 0 5px;
@@ -32,4 +33,29 @@ body{
 }
 #popup main{
 	clear:both;
+}
+.dragged{
+	background:#AAAAAAc0;
+	box-shadow: 10px 10px 32px -1px rgba(0, 0, 0, 1);
+	opacity:0.5;
+	outline:#888888 dashed 2px;
+}
+.dropped{
+	background:#FFFFFFc0;
+	box-shadow: 10px 10px 32px -1px rgba(0, 0, 0, 0.75);
+}
+
+#popup{
+	cursor: move;
+}
+
+#popup:active{
+	cursor: cell;
+}
+
+#popup form *{
+	cursor: pointer;
+}
+#popup form *:not(fieldset):hover{
+	background:#eee;
 }

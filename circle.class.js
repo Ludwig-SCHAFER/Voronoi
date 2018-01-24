@@ -3,7 +3,7 @@
 class Circle {
 	constructor(center, radius, id)
 	{
-		this.center = new Point(center.x, center.y, center.color, center.id);
+		this.center = new Point(center.x, center.y, center.id);
 		this.radius = radius;
 		this.id = id;
 	}
@@ -18,7 +18,7 @@ class Circle {
 	{
 		ctx.strokeStyle = color;
 		ctx.beginPath();
-		ctx.arc(this.center.x, this.center.y, this.radius, 0, 3.2);//3.2 is Math.Pi rounded.
+		ctx.arc(this.center.x, c.height - this.center.y, this.radius, 0, 6.3);//6.3 is 2*Math.Pi rounded.
 		ctx.stroke();
 	}
 

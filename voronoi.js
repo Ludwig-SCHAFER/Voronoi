@@ -22,8 +22,8 @@ function generateRandomPoints(n)
 {
 	for(let i = 0; i < n; i++)
 	{
-		let x = Math.round(Math.random() * c.width * 100) / 100;
-		let y = Math.round(Math.random() * c.height * 100) / 100;
+		let x = Math.random() * c.width;
+		let y = Math.random() * c.height;
 
 		let r = Math.floor(Math.random() * 256);
 		let g = Math.floor(Math.random() * 256);
@@ -73,11 +73,16 @@ function consoleSeparator()
 }
 
 /*===========================================================================*/
+/*
 console.log('TODO : gerer polygones ocmmes objets');
 console.log('TODO : sauver PARAMETRES en obj - localstorage');
 console.log('TODO : ajouter un point au clic (option pour desactiver)');
 console.log('TODO : charger une image custom avec 0 points');
 console.log('TODO : image de fond à prévoir dans le script');
+
+//TODO : position de la fenêtre à sauvegarder
+//TODO en vue du coloriage des cellules, bouton : shuffle colors des points !
+/**/
 console.log("START");
 const c   = document.getElementById("canvas_voronoi");
 c.width = window.innerWidth;
@@ -89,7 +94,7 @@ let triangles = [];
 let circles = [];
 let pairs = [];
 
-const MAX_POINTS = 25;
+const MAX_POINTS = 50;
 
 //create array of points
 generateRandomPoints(MAX_POINTS);
@@ -112,7 +117,7 @@ function process()
 	circles = [];
 	pairs = [];
 
-	console.log('Start processing triangles');
+	//console.log('Start processing triangles');
 	for (let i = 0; i < points.length; i++)
 	{
 		done[i] = [];
@@ -174,17 +179,19 @@ function process()
 				//case when 2 points share the same y value, d1.a = infinty (vertical) since v1.x = 0 and we divise by this value :(
 				if(!isFinite(d1.a))
 				{
-					d1.a = 10000; console.log('woops, same Y value found', u, v, w);
+					d1.a = 10000;
+					console.log('woops, same Y value found', u, v, w);
 				}
 				//case when 2 points share the same y value, d2.a = infinty (vertical) since v2.x = 0 and we divise by this value :(
 				if(!isFinite(d2.a))
 				{
-					d2.a = 10000; console.log('woops, same Y value found', u, v, w);
+					d2.a = 10000;
+					console.log('woops, same Y value found', u, v, w);
 				}
 				d1.b = E.y - d1.a * E.x;
 				d2.b = F.y - d2.a * F.x;
 
-				let circumcircle = new Circle (new Point(0, 0, 'white', 0), 0);
+				let circumcircle = new Circle (new Point(0, 0, 0), 0);
 
 				circumcircle.center.x = (d2.b-d1.b)/(d1.a-d2.a);
 				circumcircle.center.y = d1.a * circumcircle.center.x + d1.b;
@@ -217,9 +224,9 @@ function process()
 			}//end for k
 		}//end for j
 	}//end for i
-	console.log('Stop processing triangles. Found ' +  triangles.length + '.');
+	//console.log('Stop processing triangles. Found ' +  triangles.length + '.');
 	//NOTE: The Delaunay flipping is done implicitly since we didnt allow a triangle to live if the circumcircle cointained a point not from the triangle itself!!!
-	console.log('Start pairing triangles');
+	//console.log('Start pairing triangles');
 	for (let i = 0; i < triangles.length; i++)
 	{
 		let t1 = triangles[i];
@@ -252,27 +259,60 @@ function process()
 			if(ctr == 2)
 			{
 				pairs.push({t1:t1.id, t2:t2.id});
-				ctx.strokeStyle = 'blue';
-				ctx.beginPath();
-				ctx.moveTo(t1.circumcircle.center.x, c.height- t1.circumcircle.center.y);
-				ctx.lineTo(t2.circumcircle.center.x, c.height- t2.circumcircle.center.y);
-				ctx.stroke();/**/
 			}
 		}
 	}
-	console.log('Stop pairing triangles. Paired ' + pairs.length + '.');
+	//console.log('Stop pairing triangles. Paired ' + pairs.length + '.');
 }
 process();
 
-points.forEach(p => p.drawAsSquare());
-points.forEach(p => p.drawNumber());
-triangles.forEach(t=> t.draw('#ccc'));
-triangles.forEach(t=> t.circumcircle.drawCenter('red'));
+function redraw()
+{
+	setSettings();
+
+	clearCanvas();
+
+	if(settings.draw.points)
+	{
+		points.forEach(p => p.drawAsSquare());
+		points.forEach(p => p.drawNumber());
+	}
+
+	if(settings.draw.triangles)
+	{
+		triangles.forEach(t=> t.draw(settings.colors.triangles));
+	}
+
+	if(settings.draw.circumcircles)
+	{
+		circles.forEach(c=> c.draw(settings.colors.circumcircles));
+	}
+
+	if(settings.draw.centers)
+	{
+		triangles.forEach(t=> t.circumcircle.drawCenter(settings.colors.centers));
+	}
+
+	if(settings.draw.vertices)
+	{
+		for (let i = 0; i < pairs.length; i++)
+		{
+			ctx.strokeStyle = settings.colors.vertices;
+			ctx.beginPath();
+			ctx.moveTo(triangles[pairs[i].t1].circumcircle.center.x, c.height- triangles[pairs[i].t1].circumcircle.center.y);
+			ctx.lineTo(triangles[pairs[i].t2].circumcircle.center.x, c.height- triangles[pairs[i].t2].circumcircle.center.y);
+			ctx.stroke();
+		}
+	}
+}
+
+function clearCanvas()
+{
+	c.width = c.width;
+}
 
 
-
-
-
+/*
 consoleSeparator();
 console.groupCollapsed('[LIST OF POINTS]');
 points.forEach(p => p.toConsole());
