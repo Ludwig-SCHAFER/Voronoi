@@ -6,7 +6,7 @@ class Triangle {
 		this.a = a;
 		this.b = b;
 		this.c = c;
-		this.circumcircle = new Circle(new Point(circumcircle.center.x, circumcircle.center.y, this.id), circumcircle.radius, this.id) ;
+		this.circumcircle = circumcircle;//new Circle(new Point(circumcircle.center.x, circumcircle.center.y, this.id), circumcircle.radius, this.id) ;
 		this.id = id;
 	}
 

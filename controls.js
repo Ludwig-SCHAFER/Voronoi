@@ -1,32 +1,5 @@
-defaultSettings ={
-	points:25,
-	draw:{
-		points:true,
-		vertices:true,
-		triangles:false,
-		circumcircles:false,
-		centers:false
-	},
-	colors:{
-		background:'#ffffff',
-		points:'auto',
-		vertices:'#0000ff',
-		triangles:'#cccccc',
-		circumcircles:'#00ff00',
-		centers:'#ff0000',
-	},
-	settings:{
-		lang:'en',
-		langs:['en','fr'],
-		opacity:0,
-		preset:'set_00',
-		snap:true,
-		refresh:false
-	},
-	version:0.1
-};
+'use strict';
 
-settings = {}; //global
 /**********************************************************************************************************************
  *settings.*
  **********************************************************************************************************************/
@@ -65,13 +38,13 @@ function initializeSettings()
 	document.getElementById('color_vertices').value = settings.colors.vertices;
 	document.getElementById('color_triangles').value = settings.colors.triangles;
 	document.getElementById('color_circumcircles').value = settings.colors.circumcircles;
-	document.getElementById('color_circumcenters').value = settings.colors.centers;
+	document.getElementById('color_centers').value = settings.colors.centers;
 	//settings.draw.*
 	setCheckbox(draw_points, 			settings.draw.points);
 	setCheckbox(draw_vertices, 			settings.draw.vertices);
 	setCheckbox(draw_triangles, 		settings.draw.triangles);
 	setCheckbox(draw_circumcircles, 	settings.draw.circumcircles);
-	setCheckbox(draw_circumcenters, 	settings.draw.centers);
+	setCheckbox(draw_centers, 	settings.draw.centers);
 }
 
 function setCheckbox(element, bit)
@@ -105,7 +78,7 @@ function drawCircumcircles()
 	redraw();
 }
 
-function drawCircumcenters()
+function drawCenters()
 {
 	settings.draw.centers = !settings.draw.centers;
 	redraw();
@@ -142,19 +115,13 @@ function colorCircumcircles()
 	redraw();
 }
 
-function colorCircumcenters()
+function colorCenters()
 {
-	let el = document.getElementById('color_circumcenters');
-	settings.colors.circumcenters = el.value;
+	let el = document.getElementById('color_centers');
+	settings.colors.centers = el.value;
 	redraw();
 }
 
 /**********************************************************************************************************************
  *???
  **********************************************************************************************************************/
-
-
-
-getSettings();
-initializeSettings();
-redraw();

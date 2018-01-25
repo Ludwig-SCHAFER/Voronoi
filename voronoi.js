@@ -1,5 +1,9 @@
 'use strict';
 
+/**********************************************************************************************************************
+ *???
+ **********************************************************************************************************************/
+
 function loadPointsFromLocaleStorage()
 {
 	let jsonData = JSON.parse(localStorage.getItem('points'));
@@ -54,6 +58,21 @@ function sortPointsByX()
 	}
 }
 
+//reassign ids from left to right (except for cheated points)
+function reassignIDs()
+{
+	let offset_counter = 1;
+	for(let i = 0; i < points.length; i++)
+	{
+		if(Math.abs(points[i].x) > c.width)
+		{
+			continue;
+		}
+		points[i].id = offset_counter;
+		offset_counter++;
+	}
+}
+
 function addCheatedPointsInFarCorners()
 {
 	//cheat/hack
@@ -72,57 +91,20 @@ function consoleSeparator()
 	console.log('%c' + '▄'.repeat(120) , 'color:#FFB000;');
 }
 
-/*===========================================================================*/
-/*
-console.log('TODO : gerer polygones ocmmes objets');
-console.log('TODO : sauver PARAMETRES en obj - localstorage');
-console.log('TODO : ajouter un point au clic (option pour desactiver)');
-console.log('TODO : charger une image custom avec 0 points');
-console.log('TODO : image de fond à prévoir dans le script');
-
-
-//TODO : position de la fenêtre à sauvegarder
-//TODO en vue du coloriage des cellules, bouton : shuffle colors des points !
-//TODO : un gestionnaire de TODO perso
-//TODO : redraw en fonction du resize de window (avec un timer afin de pas faire 15 redraw /sec)
-//homogeneiser les commentaires fr/en & style
-// gestion des objets, verifier qu'ils sont passés correctement et ne pas les recreer à la volée.
-/**/
-console.log("START");
-const c   = document.getElementById("canvas_voronoi");
-c.width = window.innerWidth;
-c.height = window.innerHeight;
-const ctx = c.getContext("2d");
-
-let points = [];
-let triangles = [];
-let circles = [];
-let pairs = [];
-
-const MAX_POINTS = 50;
-
-//create array of points
-generateRandomPoints(MAX_POINTS);
-
-// sort point by X
-sortPointsByX();
-
-//reassign ids from left to right
-for(let i = 0; i < points.length; i++)
-{
-	points[i].id = i;
-}
-
-let flagCircleInvalid = false;
-let done = [];
+/**********************************************************************************************************************
+ *???
+ **********************************************************************************************************************/
 
 function process()
 {
+	let flagCircleInvalid = false;
+	let done = [];
+
 	triangles = [];
 	circles = [];
 	pairs = [];
 
-	//console.log('Start processing triangles');
+	console.log('Start processing triangles');
 	for (let i = 0; i < points.length; i++)
 	{
 		done[i] = [];
@@ -229,9 +211,9 @@ function process()
 			}//end for k
 		}//end for j
 	}//end for i
-	//console.log('Stop processing triangles. Found ' +  triangles.length + '.');
+	console.log('Stop processing triangles. Found ' +  triangles.length + '.');
 	//NOTE: The Delaunay flipping is done implicitly since we didnt allow a triangle to live if the circumcircle cointained a point not from the triangle itself!!!
-	//console.log('Start pairing triangles');
+	console.log('Start pairing triangles');
 	for (let i = 0; i < triangles.length; i++)
 	{
 		let t1 = triangles[i];
@@ -267,9 +249,13 @@ function process()
 			}
 		}
 	}
-	//console.log('Stop pairing triangles. Paired ' + pairs.length + '.');
+	console.log('Stop pairing triangles. Paired ' + pairs.length + '.');
 }
-process();
+
+
+/**********************************************************************************************************************
+ *???
+ **********************************************************************************************************************/
 
 function redraw()
 {
@@ -320,24 +306,10 @@ function clearCanvas()
 }
 
 
-/*
-consoleSeparator();
-console.groupCollapsed('[LIST OF POINTS]');
-points.forEach(p => p.toConsole());
-console.groupEnd();
-consoleSeparator();
-console.groupCollapsed('[LIST OF TRIANGLES]');
-triangles.forEach(t => t.toConsole());
-console.groupEnd();
-consoleSeparator();
-console.groupCollapsed('[LIST OF CIRCLES]');
-circles.forEach(c => c.toConsole());
-console.groupEnd();
-consoleSeparator();
-console.groupCollapsed('[LIST OF PAIRS OF TRIANGLES]');
-pairs.forEach(p => console.log(p.t1, p.t2));
-console.groupEnd();
-consoleSeparator();
-console.log("END");/**/
+/**********************************************************************************************************************
+ *???
+ **********************************************************************************************************************/
 
-//console.clear();
+/**********************************************************************************************************************
+ *???
+ **********************************************************************************************************************/

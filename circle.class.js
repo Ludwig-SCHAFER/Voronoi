@@ -3,7 +3,7 @@
 class Circle {
 	constructor(center, radius, id)
 	{
-		this.center = new Point(center.x, center.y, center.id);
+		this.center = center;
 		this.radius = radius;
 		this.id = id;
 	}

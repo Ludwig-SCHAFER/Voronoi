@@ -1,10 +1,9 @@
-*{
-	/* no wasted space */
+a *{
 	padding:0;
 	margin:0;
-	/*border:1px solid #FFB000;/**/
 	box-sizing: border-box;
 	outline:0;
+	font-family:consolas, monospace;
 }
 body{
 	/* no scrollbars */
@@ -55,10 +54,43 @@ body{
 #popup form *{
 	cursor: pointer;
 }
-#popup form *:not(fieldset):hover{
+#popup form *:not(legend):hover{
 	background:#eee;
+	text-decoration: underline;
 }
-#popup form fieldset{
+#popup form fieldset legend{
 	font-weight: bold; 
 	background: #ccc;
+}
+
+
+
+/*i did this on my own. It behaves  like some blocks in Yoshi's island*/
+@keyframes bubblegum {
+	from {transform: scale(1, 1);}
+	25% {transform: scale(1.6, 0.6);}
+	50% {transform: scale(0.6, 1.6);}
+	75% {transform: scale(1.6, 0.6);}
+	to {transform: scale(1, 1);}
+}
+.behaveLikeBubblegum:active {
+  animation-name: bubblegum;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  background:#ff44cc;
+}
+
+#popup form fieldset
+{}
+.transition_static {
+	overflow:hidden;
+	transition:max-height 0.5s ease, opacity 0.5 ease;
+	max-height:400px; 
+	opacity:1;
+	height:auto;
+}
+.transition_dynamic {
+	max-height:0;
+	opacity:0.3;
 }

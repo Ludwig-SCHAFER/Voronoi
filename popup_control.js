@@ -1,3 +1,5 @@
+'use strict';
+
 /**********************************************************************************************************************
  * with some help from the internetz
  * source: https://stackoverflow.com/a/24050777
@@ -23,6 +25,15 @@ document.addEventListener('mouseup', mUp, false);
 document.addEventListener('mousemove', mMove, false);
 //TODO : not sure if this is useful, but it's fun to work on this function
 //window.addEventListener('resize', popupIntoView, false);
+
+let fs = document.getElementsByTagName('legend');
+	//fs is an HTML collection and not an array, hence .foreach deoesn't work with this
+
+for (var i = 0; i < fs.length; i++) {
+	fs[i].addEventListener('click', toggleFieldset, false);
+	fs[i].parentElement.classList.toggle("transition_static");
+}
+
 
 /**********************************************************************************************************************
  * Initial values
@@ -184,6 +195,15 @@ function popupIntoView()
 		}
 	}
 }
+
+//
+function toggleFieldset(e)
+{
+	this.parentElement.classList.toggle("transition_dynamic");
+}
+
+
+
 
 popupInit();
 //force closed at start

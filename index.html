@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Test de diagramme de Voronoi</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" media="screen" href="./style.css" />
 	</head>
 	<body>
@@ -15,21 +14,26 @@
 			</header>
 			<main>
 				<form>
-					<fieldset>Points</fieldset>
+					<fieldset>
+						<legend>Points</legend>
 						<input type ="number" 	id="points_amount" 	name="points_amount" 	value="0" 	placeholder="50" 	onChange="changePointsAmount()" />
 						<label for="points_amount">Nombre de points</label><br />
-					<fieldset>Couleur</fieldset>
+					</fieldset>
+					<fieldset>
+						<legend>Couleur</legend>
 						<input type="color" 	value="#ffffff" 	id="color_background" 		name="color_background" 	onChange="colorBackground()" />
 						<label for="color_background">fond</label><br />
 						<input type="color" 	value="#000000" 	id="color_vertices" 		name="color_vertices" 		onChange="colorVertices()" />
-						<label for="color_Voronoi">arrêtes de Voronoi</label><br />
+						<label for="color_vertices">arrêtes de Voronoi</label><br />
 						<input type="color" 	value="#000000" 	id="color_triangles" 		name="color_triangles" 		onChange="colorTriangles()" />
 						<label for="color_triangles">triangles de Delaunay</label><br />
 						<input type="color" 	value="#000000" 	id="color_circumcircles" 	name="color_circumcircles" 	onChange="colorCircumcircles()" />
 						<label for="color_circumcircles">cercles circonscrits</label><br />
-						<input type="color" 	value="#000000" 	id="color_circumcenters" 	name="color_circumcenters" 	onChange="colorCircumcenters()" />
-						<label for="color_circumcenters">centres des cercles</label><br />
-					<fieldset>Dessiner</fieldset>
+						<input type="color" 	value="#000000" 	id="color_centers" 	name="color_centers" 	onChange="colorCenters()" />
+						<label for="color_centers">centres des cercles</label><br />
+					</fieldset>
+					<fieldset>
+						<legend>Dessiner</legend>
 						<input type="checkbox" 	id="draw_points" 			name="draw_points" 			onChange="drawPoints()" />
 						<label for="draw_points">points</label><br />
 						<input type="checkbox" 	id="draw_vertices" 			name="draw_vertices" 		onChange="drawVertices()" />
@@ -38,9 +42,11 @@
 						<label for="draw_triangles">triangles de Delaunay</label><br />
 						<input type="checkbox" 	id="draw_circumcircles" 	name="draw_circumcircles" 	onChange="drawCircumcircles()" />
 						<label for="draw_circumcircles">cercles circonscrits</label><br />
-						<input type="checkbox" 	id="draw_circumcenters" 	name="draw_circumcenters" 	onChange="drawCircumcenters()" />
-						<label for="draw_circumcenters">centres des cercles</label><br />
-					<fieldset>[PROTOTYPE]Motifs prédéfinis</fieldset>
+						<input type="checkbox" 	id="draw_centers" 	name="draw_centers" 	onChange="drawCenters()" />
+						<label for="draw_centers">centres des cercles</label><br />
+					</fieldset>
+					<fieldset>
+						<legend>[PROTOTYPE]Motifs prédéfinis</legend>
 						<select>
 							<option value="set_00">ANNULER</option>
 							<option value="set_01">Aléatoire</option>
@@ -50,31 +56,45 @@
 							<option value="set_05">Arrondissements de Paris</option>
 							<option value="set_06">Préféctures françaises</option>
 						</select> 
-					<fieldset>Console</fieldset>
+					</fieldset>
+					<fieldset>
+						<legend>Console</legend>
 						Todo
-					<fieldset>Général</fieldset>
+					</fieldset>
+					<fieldset>
+						<legend>Général</legend>
 						TODO: LANGUES FR EN-UK<br />
 						<input type="checkbox" 	id="auto_refresh" 			name="auto_refresh" 			onChange="toggleAutoRefresh()" />
 						<label for="auto_refresh">Rafraichissement automatique</label><br />
 						TODO: SNAP TO GRID<br />
 						TODO: Opacité variable<br />
 						<button>Configuration par défaut</button>
-					<fieldset>Mémoire locale</fieldset>
+					</fieldset>
+					<fieldset>
+						<legend>Mémoire locale</legend>
 						<button type="button">💾Enregistrer</button>
 						<button type="button" onclick="resetStorage()">RESET</button>
 						<button type="button">📂Charger</button>
+					</fieldset>
 				</form>
 			</main>
 			<footer>
-				Projet personnel de Ludwig S.
+				<a href="https://github.com/Ludwig-SCHAFER" title="Lien vers profil github">Ludwig SCH&Auml;FER</a>
+				&nbsp;
+				<a href="https://github.com/Ludwig-SCHAFER/Voronoi" title="Lien vers la source"><img src="./img/mark-github.svg" alt="GitHub"/></a>
 			</footer>
 		</section>
 
+		<script type="text/javascript" src="point.class.js"></script>
 		<script type="text/javascript" src="circle.class.js"></script>
 		<script type="text/javascript" src="triangle.class.js"></script>
-		<script type="text/javascript" src="point.class.js"></script>
-		<script type="text/javascript" src="voronoi.js"></script>
-		<script type="text/javascript" src="controls.js"></script>
+
 		<script type="text/javascript" src="popup_control.js"></script>
+
+		<script type="text/javascript" src="controls.js"></script>
+		<script type="text/javascript" src="voronoi.js"></script>
+
+		<script type="text/javascript" src="main.js"></script>
+
 	</body>
 </html>
