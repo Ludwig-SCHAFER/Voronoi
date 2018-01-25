@@ -16,7 +16,7 @@ body{
 	top : -10px ;
 	/*background:#FFFFFFc0;*/
 	border-radius: 30px;
-	border:#FFB000 solid 4px;
+	border:#000 solid 4px;
 	/*filter: blur(5px);*/
 }
 #popup header {
@@ -35,14 +35,13 @@ body{
 	clear:both;
 }
 .dragged{
-	background:#AAAAAAc0;
+	background:#FFFFFFc0;
 	box-shadow: 10px 10px 32px -1px rgba(0, 0, 0, 1);
 	opacity:0.5;
-	outline:#888888 dashed 2px;
 }
 .dropped{
 	background:#FFFFFFc0;
-	box-shadow: 10px 10px 32px -1px rgba(0, 0, 0, 0.75);
+	box-shadow: 10px 10px 32px -1px rgba(0, 0, 0, 0.1);
 }
 
 #popup{
@@ -58,4 +57,8 @@ body{
 }
 #popup form *:not(fieldset):hover{
 	background:#eee;
+}
+#popup form fieldset{
+	font-weight: bold; 
+	background: #ccc;
 }

@@ -80,8 +80,13 @@ console.log('TODO : ajouter un point au clic (option pour desactiver)');
 console.log('TODO : charger une image custom avec 0 points');
 console.log('TODO : image de fond à prévoir dans le script');
 
+
 //TODO : position de la fenêtre à sauvegarder
 //TODO en vue du coloriage des cellules, bouton : shuffle colors des points !
+//TODO : un gestionnaire de TODO perso
+//TODO : redraw en fonction du resize de window (avec un timer afin de pas faire 15 redraw /sec)
+//homogeneiser les commentaires fr/en & style
+// gestion des objets, verifier qu'ils sont passés correctement et ne pas les recreer à la volée.
 /**/
 console.log("START");
 const c   = document.getElementById("canvas_voronoi");
@@ -309,6 +314,9 @@ function redraw()
 function clearCanvas()
 {
 	c.width = c.width;
+	//ctx.clearRect(0, 0, c.width, c.height);
+	ctx.fillStyle = settings.colors.background;
+	ctx.fillRect(0, 0, c.width, c.height);
 }
 
 

@@ -51,11 +51,13 @@ function setSettings(){
 function resetStorage()
 {
 	localStorage.removeItem('settings');
+	getSettings();
+	initializeSettings();
+	redraw();
 }
 
 function initializeSettings()
 {
-	console.log("INIT initializeSettings")
 	let el;
 	//settings.colors.*
 	document.getElementById('points_amount').value = settings.points;
