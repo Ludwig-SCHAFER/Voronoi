@@ -63,7 +63,7 @@ reassignIDs()
  **********************************************************************************************************************/
 consoleSeparator();
 console.groupCollapsed('[TODO]');
-console.log('TODO : gerer polygones ocmmes objets');
+console.log('TODO : gerer polygones commes objets');
 console.log('TODO : sauver PARAMETRES en obj - localstorage');
 console.log('TODO : ajouter un point au clic (option pour desactiver)');
 console.log('TODO : charger une image custom avec 0 points');
