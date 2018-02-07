@@ -45,6 +45,7 @@ body{
 
 #popup{
 	cursor: move;
+	width :320px;
 }
 
 #popup:active{
@@ -54,7 +55,8 @@ body{
 #popup form *{
 	cursor: pointer;
 }
-#popup form *:not(legend):hover{
+
+#popup form label:hover{
 	background:#eee;
 	text-decoration: underline;
 }
@@ -62,10 +64,13 @@ body{
 	font-weight: bold; 
 	background: #ccc;
 }
+#popup form fieldset label{
+	margin-left:5px;
+}
 
 
 
-/*i did this on my own. It behaves  like some blocks in Yoshi's island*/
+/*I did this on my own. It behaves  like some blocks in Yoshi's island. 100% proud*/
 @keyframes bubblegum {
 	from {transform: scale(1, 1);}
 	25% {transform: scale(1.6, 0.6);}
@@ -74,23 +79,25 @@ body{
 	to {transform: scale(1, 1);}
 }
 .behaveLikeBubblegum:active {
-  animation-name: bubblegum;
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
-  background:#ff44cc;
+	animation-name: bubblegum;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+	background:#ff44cc;
 }
 
-#popup form fieldset
-{}
 .transition_static {
-	overflow:hidden;
-	transition:max-height 0.5s ease, opacity 0.5 ease;
-	max-height:400px; 
+	transition:all .25s ease-in-out;
 	opacity:1;
-	height:auto;
+	display:inline;
+	filter: blur(0px);
 }
-.transition_dynamic {
-	max-height:0;
-	opacity:0.3;
+
+.transition_opacity {
+	opacity:0.9;
+	filter: blur(2px);
+}
+
+.transition_hidden {
+	display:none;
 }

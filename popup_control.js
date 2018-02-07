@@ -26,12 +26,19 @@ document.addEventListener('mousemove', mMove, false);
 //TODO : not sure if this is useful, but it's fun to work on this function
 //window.addEventListener('resize', popupIntoView, false);
 
-let fs = document.getElementsByTagName('legend');
-	//fs is an HTML collection and not an array, hence .foreach deoesn't work with this
 
-for (var i = 0; i < fs.length; i++) {
-	fs[i].addEventListener('click', toggleFieldset, false);
-	fs[i].parentElement.classList.toggle("transition_static");
+let legends = document.getElementsByTagName('legend');
+//legends is an HTML collection and not an array, hence .foreach doesn't work with this
+for (let i = 0; i < legends.length; i++)
+{
+	legends[i].addEventListener('click', toggleFieldset);
+
+	let siblings = legends[i].parentElement.children;
+
+	for (let j = 1; j < siblings.length; j++)
+	{
+		siblings[j].classList.add("transition_static");
+	}
 }
 
 
@@ -60,7 +67,7 @@ const TIMEOUT_CLICK = 300
  * Event handling functions
  **********************************************************************************************************************/
 
-//when the poup is being clicked (fired once per click).
+//when the popup is being clicked (fired once per click).
 function mDown(e)	
 {
 	clicked = true;
@@ -85,7 +92,7 @@ function mUp(e)
 	dragged = false;
 }
 
-//when the poup is being unclicked (fired once per click) (triggered by mouse even if cursos is no longer over the popup).
+//when the popup is being unclicked (fired once per click) (triggered by mouse even if cursos is no longer over the popup).
 function mMove(e)
 {
 	e.preventDefault();
@@ -140,7 +147,8 @@ function toggleControlWindow()
 	}
 }
 
-//
+//centers the popup on 1st launch
+//TODO : disable witch settings (boolean : hasMovedOnce => disable this)
 function popupInit()
 {
 	originalPosition.width = popup.offsetWidth;
@@ -168,7 +176,7 @@ function popupInit()
 
 }
 
-//
+//unused
 function popupIntoView()
 {
 	const percentOfPopupVisible = 30/100;
@@ -182,15 +190,15 @@ function popupIntoView()
 	let cs_l = popup.offsetLeft;
 	let cs_t = popup.offsetTop;
 
-	console.clear();
-	console.log(cs_w, cs_h, cs_l, cs_t, window.innerWidth, window.innerHeight);
+	//console.clear();
+	//console.log(cs_w, cs_h, cs_l, cs_t, window.innerWidth, window.innerHeight);
 
 	if(cs_l >= 0)
 	{
-		console.log("	>0")
+		//console.log("	>0")
 		if(cs_l + cs_w +10> window.innerWidth)
 		{
-			console.log("		", (cs_l + cs_w + 10),'>?', window.innerWidth, "----->", window.innerWidth - cs_w)
+			//console.log("		", (cs_l + cs_w + 10),'>?', window.innerWidth, "----->", window.innerWidth - cs_w)
 			popup.style.left = (window.innerWidth - cs_w - 10) + 'px';
 		}
 	}
@@ -199,9 +207,38 @@ function popupIntoView()
 //
 function toggleFieldset(e)
 {
-	this.parentElement.classList.toggle("transition_dynamic");
+	let siblings = e.target.parentElement.children;
+	
+	for (let i = 1; i < siblings.length; i++)
+	{
+		let elt = siblings[i];
+
+		if (elt.classList.contains("transition_hidden"))
+		{
+			elt.classList.remove("transition_hidden");
+			elt.removeEventListener("transitionend", funcTransEnd);
+			setTimeout(function ()
+			{
+				elt.classList.remove("transition_opacity");
+			}, 16);
+		}
+		else
+		{
+			elt.classList.add("transition_opacity");
+			elt.addEventListener("transitionend", funcTransEnd);
+		}
+		
+	}
 }
 
+function funcTransEnd(e)
+{
+	if(!this.dataset.didTransition || true)
+	{
+		this.dataset.didTransition = true;
+		this.classList.add("transition_hidden");
+	}
+}
 
 
 
